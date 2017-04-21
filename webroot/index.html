@@ -1,0 +1,45 @@
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, minimum-scale=0.1">
+		<title>登录二维码</title>
+		<style id="style-1-cropbar-clipper">/* Copyright 2014 Evernote Corporation. All rights reserved. */
+			.en-markup-crop-options {
+				top: 18px !important;
+				left: 50% !important;
+				margin-left: -100px !important;
+				width: 200px !important;
+				border: 2px rgba(255,255,255,.38) solid !important;
+				border-radius: 4px !important;
+			}
+
+			.en-markup-crop-options div div:first-of-type {
+				margin-left: 0px !important;
+			}
+		</style>
+	</head>
+	<script type="text/javascript" src="jquery-3.2.1.min.js"></script>
+	<body style="margin: 0px; background: #0e0e0e;">
+		<img style="-webkit-user-select: none;background-position: 0px 0px, 10px 10px;background-size: 20px 20px;background-image:linear-gradient(45deg, #eee 25%, transparent 25%, transparent 75%, #eee 75%, #eee 100%),linear-gradient(45deg, #eee 25%, white 25%, white 75%, #eee 75%, #eee 100%);" src="qr.png" id="pic">
+		<br>
+		<span style="border:1px; background:#FFF" id="time_area">2017-04-21 14:24:34</span>
+	</body>
+	<script type="text/javascript">
+		setInterval("ajax()",1000);
+		function ajax(){
+			var r = Math.floor(Math.random()*10000+1);
+			var url = "qr.png" + "?r=" + r;
+			$.ajax({
+				'type':'GET',
+				'url': url,
+				'complete': function(xhr,data){
+					var lastModified = xhr.getResponseHeader('Last-Modified');
+					var t = new Date(lastModified);
+					var img = document.getElementById("pic");
+					img.setAttribute("src", url);
+					var sp = document.getElementById("time_area");
+					sp.innerHTML = t.toLocaleString();
+				}
+			})
+		}
+	</script>
+</html>
