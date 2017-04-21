@@ -24,12 +24,12 @@
 		<span style="border:1px; background:#FFF" id="time_area">2017-04-21 14:24:34</span>
 	</body>
 	<script type="text/javascript">
-		setInterval("ajax()",1000);
+		setInterval("ajax()",3000);
 		function ajax(){
 			var r = Math.floor(Math.random()*10000+1);
 			var url = "qr.png" + "?r=" + r;
 			$.ajax({
-				'type':'GET',
+				'type':'HEAD',
 				'url': url,
 				'complete': function(xhr,data){
 					var lastModified = xhr.getResponseHeader('Last-Modified');
